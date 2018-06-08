@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="Content/form.css" rel="stylesheet" />
+    <script src="Scripts/index.js"></script>
+
+</head>
+<body>
+    <div id="asnHead">
+        <span id="asnTitle">Suggest A Song</span>
+    </div>
+    <div id="asnFilter">
+        <div style="float:left">
+            <label for="fltType">Requsted results</label>
+            <select id="fltType" class="asnSelect">
+                <option value="albums">Album</option>
+                <option value="artists" selected="selected">Artist</option>
+                <option value="tracks">Track</option>
+            </select>
+        </div>
+        <br style="clear:both;" />
+        <br style="clear:both;" />
+        <div style="float:left">
+            <label for="fltPeriod">Release date</label>
+            <input type="radio" value="0" name="asnPeriod" checked="checked" /> All <input type="radio" value="1" name="asnPeriod"  /> Latest <input type="radio" name="asnPeriod" value="2" />  Period: <input type="text" id="fltFrom" value="" class="asnPeriod" /> - <input type="text" id="fltTo" value="" class="asnPeriod" />
+
+        </div>
+        <br style="clear:both;" />
+        <hr />
+        <div style="float:left">
+            <label for="fltAlbum">Album</label>
+            <input type="text" id="fltAlbum" value="" class="asnText" placeholder="Enter keyword" /><input id="asnIncAlbum" type="button" value="Include" /><input id="asnExclAlbum" type="button" value="Exclude" />
+            <label for="fltArtist">Artist</label>
+            <input type="text" id="fltArtist" value="" class="asnText" placeholder="Enter keyword" /><input id="asnIncArtist" type="button" value="Include" /><input id="asnExclArtist" type="button" value="Exclude" />
+            <label for="fltTrack">Track</label>
+            <input type="text" id="fltTrack" value="" class="asnText" placeholder="Enter keyword" /><input id="asnIncTrack" type="button" value="Include" /><input id="asnExclTrack" type="button" value="Exclude" />
+            <label for="fltGenre">Genre</label>
+            <input type="text" id="fltGenre" value="" class="asnText" placeholder="Enter keyword" /><input id="asnIncGenre" type="button" value="Include" />
+        </div>
+        <br style="clear:both;" />
+        <br style="clear:both;" />
+        Filters:
+        <div id="asnSelFilters">
+            <div>Include: <div id="asnIncFilters"></div> </div>
+            <br />
+            <div>Exclude: <div id="asnExclFilters"></div></div>
+        </div>
+
+        <br style="clear:both;" /><br style="clear:both;" /> <div >
+            <button id="asnSearch">Search</button>
+            <button id="asnClear">Clear</button>
+        </div>
+
+    </div>
+    <div id="asnResult">
+
+    </div>
+</body>
+</html>
