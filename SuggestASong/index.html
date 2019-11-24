@@ -7,8 +7,13 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="Content/form.css" rel="stylesheet" />
-    <script src="Scripts/index.js"></script>
-
+    <script src="Scripts/Main.Filtering.js"></script>
+	<script src="Scripts/Main.UI.js"></script>
+	<script>
+		$(document).ready(function () {
+			Main.Filtering.init();
+		});
+	</script>
 </head>
 <body>
     <div id="asnHead">
@@ -18,9 +23,9 @@
         <div style="float:left">
             <label for="fltType">Requsted results</label>
             <select id="fltType" class="asnSelect">
-                <option value="albums">Album</option>
-                <option value="artists" selected="selected">Artist</option>
-                <option value="tracks">Track</option>
+                <option value="album">Album</option>
+                <option value="artist" selected="selected">Artist</option>
+                <option value="track">Track</option>
             </select>
         </div>
         <br style="clear:both;" />

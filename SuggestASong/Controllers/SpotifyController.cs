@@ -11,32 +11,31 @@ namespace SuggestASong.Controllers
     [RoutePrefix("api/spotify")]
     public class SpotifyController : ControllerBase
     {
-        [HttpPost]
-        [Route("albums")]
-        public async Task<SearchAlbumCollection> SearchAlbums([FromBody]SpotifyFilter filter)
-        {
+		[HttpPost]
+		[Route("albums")]
+		public async Task<SearchAlbumCollection> SearchAlbums([FromBody]SpotifyFilter filter)
+		{
+			var albums = await spotifySvc.SearchAlbums(filter);
+			return albums;
+		}
 
-            var albums = await spotifySvc.SearchAlbums(filter);
-            return albums;
-        }
-
-        [HttpPost]
+		[HttpPost]
         [Route("artists")]
         public async Task<SearchArtistCollection> SearchArtists([FromBody]SpotifyFilter filter)
         {
-            var artists = await spotifySvc.SearchArtists(filter);
-            return artists;
+			var artists =  await spotifySvc.SearchArtists(filter);
+			return artists;
         }
 
-        [HttpPost]
-        [Route("tracks")]
-        public async Task<SearchTrackCollection> SearchTracks([FromBody]SpotifyFilter filter)
-        {
+		[HttpPost]
+		[Route("tracks")]
+		public async Task<SearchTrackCollection> SearchTracks([FromBody]SpotifyFilter filter)
+		{
 
-            var tracks = await spotifySvc.SearchTracks(filter);
-            return tracks;
-        }
-    }
+			var tracks = await spotifySvc.SearchTracks(filter);
+			return tracks;
+		}
+	}
 
 
 }

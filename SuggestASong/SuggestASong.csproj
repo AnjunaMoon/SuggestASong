@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -142,9 +143,9 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="noimg.png" />
-    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\Main.UI.js" />
     <Content Include="spotify.png" />
-    <Content Include="spotifyweb.jpg" />
+    <Content Include="spotifyweb.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -174,6 +175,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Interfaces.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Main.Filtering.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

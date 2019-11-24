@@ -4,15 +4,21 @@ using System.Linq;
 
 namespace SuggestASong.Models
 {
-    public enum FilterTypes { Any, Albums,Artists, Tracks }
+    public enum FilterTypes { Any, Album,Artist, Track }
     public class SpotifyFilter
     {
         public SpotifyFilter() { }
+		// Type of objects to return
         public FilterTypes Type { get; set; }
-        public bool AllDates{ get; set; }
-        public int From { get; set; }
-        public int To { get; set; }
-        public List<SpotifySubfilter> IncludeFilters { get; set; }
+		// Get objects from all release-dates (applies to albums+tracks)
+		public bool AllDates{ get; set; }
+		// Get objects with release-dates from this year (applies to albums+tracks)
+		public int From { get; set; }
+		// Get objects with release-dates up to this year (applies to albums+tracks)
+		public int To { get; set; }
+		// Subfilters that should be used while searching
+		public List<SpotifySubfilter> IncludeFilters { get; set; }
+		// Subfilters indicating which of found results should be excluded
         public List<SpotifySubfilter> ExcludeFilters { get; set; }
 
         public List<string> GetGenres()

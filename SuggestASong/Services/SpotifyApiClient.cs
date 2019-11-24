@@ -16,37 +16,31 @@ namespace SuggestASong.Services
 {
     public class SpotifyApiClient
     {
-        private const string ClientId = "be4ba9086ce04f909f06c44a928e3648";
-        private const string ClientSecret = "726dad7a9c57435f85e45c73b038f8b3";
-        private HttpClient httpClient;
-
-        protected const string BaseUrl = "https://api.spotify.com/";
+		private HttpClient httpClient;
+		private const string ClientId = "996d0037680544c987287a9b0470fdbb";
+		private const string ClientSecret = "5a3c92099a324b8f9e45d77e919fec13";
+        private const string BaseUrl = "https://api.spotify.com/";
 
         public SpotifyApiClient()
         {
-            httpClient = GetDefaultClient();
+            httpClient = GetClient();
         }
 
-        private HttpClient GetDefaultClient()
+        private HttpClient GetClient()
         {
             var authHandler = new SpotifyAuthClientCredentialsHttpMessageHandler(
                 ClientId,
                 ClientSecret,
                 new HttpClientHandler());
 
-            var client = new HttpClient(authHandler)
-            {
-                BaseAddress = new Uri(BaseUrl)
-            };
-
-            return client;
+			return new HttpClient(authHandler) { BaseAddress = new Uri(BaseUrl) };
         }
 
         public async Task<T> SearchAsync<T>(string type, string query, int? limit = null, int? offset = null) where T:class
         {
             var url = new Url("/v1/search");
-            url = url.SetQueryParam("q", query);
-            url = url.SetQueryParam("type", type.TrimEnd('s'));
+            url = url.SetQueryParam("q", query.ToLower());
+			url = url.SetQueryParam("type", type.ToLower().TrimEnd('s'));
 
             if (limit != null)
                 url = url.SetQueryParam("limit", limit);
@@ -59,8 +53,7 @@ namespace SuggestASong.Services
             return genericResponse as T;
         }
     }
-
-    public class SpotifyAuthClientCredentialsHttpMessageHandler : DelegatingHandler
+	public class SpotifyAuthClientCredentialsHttpMessageHandler : DelegatingHandler
     {
         private const string AuthenticationEndpoint = "https://accounts.spotify.com/api/token";
         private readonly string _clientId;
@@ -78,7 +71,8 @@ namespace SuggestASong.Services
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", await GetAuthenticationTokenAsync());
             }
-            return await base.SendAsync(request, cancellationToken);
+
+			return await base.SendAsync(request, cancellationToken);
         }
 
         private async Task<string> GetAuthenticationTokenAsync()

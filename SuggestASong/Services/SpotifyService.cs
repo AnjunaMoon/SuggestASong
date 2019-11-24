@@ -15,28 +15,48 @@ namespace SuggestASong.Services
         {
             apiClient = new SpotifyApiClient();
         }
-
-
-        public async Task<SearchArtistCollection> SearchArtists(SpotifyFilter filter)
+		
+		/// <summary>
+		/// Create query based on filter and return result in form of Artists
+		/// </summary>
+		/// <param name="filter"></param>
+		/// <returns></returns>
+		public async Task<SearchArtistCollection> SearchArtists(SpotifyFilter filter)
         {
-            var artists = await apiClient.SearchAsync<SearchArtistResponse>(filter.Type.ToString(), CreateQuery(filter));
-
+			var artists = await apiClient.SearchAsync<SearchArtistResponse>(filter.Type.ToString(), CreateQuery(filter));
             return artists.Artists;
         }
-        public async Task<SearchAlbumCollection> SearchAlbums(SpotifyFilter filter)
-        {
-            var albums = await apiClient.SearchAsync<SearchAlbumResponse>(filter.Type.ToString(), CreateQuery(filter));
+		/// <summary>
+		/// Create query based on filter and return result in form of Albums
+		/// </summary>
+		/// <param name="filter"></param>
+		/// <returns></returns>
+		public async Task<SearchAlbumCollection> SearchAlbums(SpotifyFilter filter)
+		{
+			var albums = await apiClient.SearchAsync<SearchAlbumResponse>(filter.Type.ToString(), CreateQuery(filter));
 
-            return albums.Albums;
-        }
-        public async Task<SearchTrackCollection> SearchTracks(SpotifyFilter filter)
-        {
-            var tracks = await apiClient.SearchAsync<SearchTrackResponse>(filter.Type.ToString(), CreateQuery(filter));
- 
-            return tracks.Tracks;
-        }
+			return albums.Albums;
+		}
+		/// <summary>
+		/// Create query based on filter and return result in form of Tracks
+		/// </summary>
+		/// <param name="filter"></param>
+		/// <returns></returns>
+		public async Task<SearchTrackCollection> SearchTracks(SpotifyFilter filter)
+		{
+			var tracks = await apiClient.SearchAsync<SearchTrackResponse>(filter.Type.ToString(), CreateQuery(filter));
 
-        private string CreateQuery(SpotifyFilter filter)
+			return tracks.Tracks;
+		}
+
+		/// <summary>
+		/// Creates a query for Spotify Search-method
+		/// based on search-parameters to be both included and 
+		/// excluded from result.
+		/// </summary>
+		/// <param name="filter"></param>
+		/// <returns>Query to be appended to the search-uri</returns>
+		private string CreateQuery(SpotifyFilter filter)
         {
             StringBuilder q = new StringBuilder("");
             var filters = new Dictionary<string, string>();
